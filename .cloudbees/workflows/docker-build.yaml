@@ -17,7 +17,7 @@ jobs:
           docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PAT }}
           docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
           docker push ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
-
+          docker logout
      
 
       - name: Build Go app
