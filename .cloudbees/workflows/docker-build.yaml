@@ -13,7 +13,7 @@ jobs:
 
       - uses: docker://docker:latest
         run: |
-          echo "${{ vars.DOCKER_USERNAME }}" | docker login --username cbpautomation --password-stdin
+          echo "${{ secrets.DOCKER_PAT }}" | docker login --username cbpautomation --password-stdin
           docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }} .
           docker push ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
           docker logout
