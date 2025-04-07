@@ -11,6 +11,6 @@ jobs:
         with:
           name: "cbpautomation/python-hello-world-docker"
           version: "0.0.1866"
-          digest: ""
+          digest: "sha256:29ab9bb2c785b2d62ff763a2aed4d8ca3d0e78529083c38b70abd0bb84d72b6a"
           url: "docker.io/cbpautomation/python-hello-world-docker:0.0.1866"
           target-environment: "PREPROD"
