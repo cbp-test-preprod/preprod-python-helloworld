@@ -10,7 +10,7 @@ jobs:
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
           name: "cbpautomation/python-hello-world-docker"
-          version: "0.0.1900"
+          version: "0.0.1901"
           digest: ""
-          url: "docker.io/cbpautomation/python-hello-world-docker:0.0.1900"
+          url: "docker.io/cbpautomation/python-hello-world-docker:0.0.1901"
           target-environment: "PREPROD"
