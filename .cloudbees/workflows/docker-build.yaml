@@ -8,11 +8,17 @@ on:
 jobs:
   ci-job:
     steps:
+      - name: checkout
+        uses: https://github.com/cloudbees-io/checkout@v1
+
       - uses: docker://docker:latest
         run: |
           docker -v
-      - name: checkout
-        uses: https://github.com/cloudbees-io/checkout@v1
+          docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PAT }}
+          docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
+          docker push ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
+
+     
 
       - name: Build Go app
         uses: docker://golang:1.20
