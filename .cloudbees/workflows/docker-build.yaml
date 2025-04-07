@@ -1,23 +1,25 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: My automation
-
 on:
   workflow_dispatch:
-
 jobs:
   ci-job:
     steps:
       - name: checkout
         uses: https://github.com/cloudbees-io/checkout@v1
-
-      - uses: docker://docker:latest
-        run: |
+      - run: |
           echo "${{ secrets.DOCKER_PAT }}" | docker login --username cbpautomation --password-stdin
           docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }} .
           docker push ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
           docker logout
-     
+        uses: docker://docker:latest
+        
+        if: ${{ failure() }}
+      - run: |
+          docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }} .
+        uses: docker://docker:latest
+        shell: sh
 
       - name: Build Go app
         uses: docker://golang:1.20
