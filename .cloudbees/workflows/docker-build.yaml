@@ -17,6 +17,7 @@ jobs:
         
         if: ${{ failure() }}
       - run: |
+          dockerd
           docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }} .
         uses: docker://docker:latest
         shell: sh
