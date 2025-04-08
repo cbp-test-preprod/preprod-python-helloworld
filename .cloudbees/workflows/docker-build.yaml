@@ -8,14 +8,15 @@ jobs:
     steps:
       - name: checkout
         uses: https://github.com/cloudbees-io/checkout@v1
+
       - run: |
           echo "${{ secrets.DOCKER_PAT }}" | docker login --username cbpautomation --password-stdin
           docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }} .
           docker push ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }}
           docker logout
         uses: docker://docker:latest
-        
         if: ${{ failure() }}
+
       - run: |
           sudo dockerd
           docker build -t ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:${{ cloudbees.version }} .
