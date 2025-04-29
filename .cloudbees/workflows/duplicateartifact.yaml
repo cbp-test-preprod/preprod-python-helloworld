@@ -12,19 +12,19 @@ jobs:
       - name: Inform system that an artifact version was created
         uses: cloudbees-io/register-build-artifact@v1
         with:
-          name: ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker
+          name: cbpautomation/python-hello-world-docker
           version: 	0.0.1620
-          url: docker.io/${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:0.0.1620
+          url: docker.io/cbpautomation/python-hello-world-docker:0.0.1620
           digest: sha256:102f6f3d863fcd801815e527be029cb191059416616f3581b55e20585f4a7dec
 
       - name: success_valid_env_reg_artifact
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
           version: 0.0.1620
-          url: docker.io/${{ vars.DOCKER_USERNAME }}/python-hello-world-docker:0.0.1620
+          url: docker.io/cbpautomation/python-hello-world-docker:0.0.1620
           digest: sha256:102f6f3d863fcd801815e527be029cb191059416616f3581b55e20585f4a7dec
           target-environment: "PREPROD"
-          name: ${{ vars.DOCKER_USERNAME }}/python-hello-world-docker
+          name: cbpautomation/python-hello-world-docker
           
       - name: Display Artifact Version
         uses: docker://golang:1.20.3-alpine3.17
